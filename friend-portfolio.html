@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prakul Balaji Digital Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .split-pages {
+            display: flex;
+            flex-direction: row;
+            width: 100vw;
+            min-width: 320px;
+            max-width: 100vw;
+            overflow-x: hidden;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .page-half {
+            flex: 1 1 0;
+            min-width: 320px;
+            background: #fff;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            padding: 2.5rem 2rem 2rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            border-right: 1px solid #e0e6ed;
+        }
+
+        .page-half:last-child {
+            border-right: none;
+        }
+
+        .page-title {
+            font-size: 2rem;
+            color: #0078d7;
+            margin-bottom: 1.2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .section-card {
+            width: 100%;
+            max-width: 420px;
+        }
+
+        @media (max-width: 900px) {
+            .split-pages {
+                flex-direction: column;
+            }
+
+            .page-half {
+                border-right: none;
+                border-bottom: 1px solid #e0e6ed;
+            }
+
+            .page-half:last-child {
+                border-bottom: none;
+            }
+        }
+
+        /* Movie intro overlay */
+        .movie-intro {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: opacity 0.5s;
+        }
+
+        .movie-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid #fff;
+            box-shadow: 0 0 0 8px rgba(0, 120, 215, 0.25);
+            background: #eaf3fa;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .movie-textbox {
+            background: rgba(255, 255, 255, 0.97);
+            color: #222;
+            border-radius: 12px;
+            padding: 1.2rem 2rem;
+            font-size: 1.2rem;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+            max-width: 90vw;
+            min-width: 260px;
+            text-align: center;
+        }
+
+        .movie-next-btn {
+            margin-top: 2rem;
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7rem 2.2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 1px 4px rgba(0, 120, 215, 0.07);
+            transition: background 0.2s;
+        }
+
+        .movie-next-btn:hover {
+            background: #005fa3;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f8fb;
+            color: #222;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        .grades-binder {
+            position: fixed;
+            top: 1.2rem;
+            left: 2rem;
+            z-index: 1500;
+            max-width: 420px;
+            width: 100%;
+            min-width: 260px;
+            margin: 0;
+            background: #fff;
+            border: 2px solid #0078d7;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0, 120, 215, 0.10);
+            padding: 1.2rem 1.2rem 1.2rem 1.2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-photo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #0078d7;
+            margin-bottom: 0.7rem;
+            background: #eaf3fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: #0078d7;
+        }
+
+        .binder-tabs {
+            display: flex;
+            gap: 0.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .binder-tab {
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            border-radius: 5px 5px 0 0;
+            padding: 0.25rem 0.7rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            box-shadow: 0 1px 4px rgba(0, 120, 215, 0.07);
+        }
+
+        .binder-tab {
+            background: #0078d7;
+            color: #fff;
+            border: none;
+            border-radius: 6px 6px 0 0;
+            padding: 0.5rem 1.5rem;
+            font-size: 1.05rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s;
+            box-shadow: 0 1px 4px rgba(0, 120, 215, 0.07);
+        }
+
+        .binder-tab:hover,
+        .binder-tab.active {
+            background: #005fa3;
+        }
+
+        .grade-details {
+            background: #eaf3fa;
+            border-radius: 0 0 8px 8px;
+            padding: 0.9rem 1.2rem;
+            min-height: 60px;
+            font-size: 1.05rem;
+            width: 100%;
+            box-sizing: border-box;
+            color: #1a3a4a;
+        }
+
+        .main-content {
+            max-width: 800px;
+            margin: 4rem auto 2rem auto;
+            background: #fff;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px rgba(0, 120, 215, 0.08);
+            padding: 2.5rem;
+        }
+
+        .section-card {
+            background: #f7fbff;
+            border-left: 4px solid #0078d7;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            padding: 1.2rem 1.5rem;
+            box-shadow: 0 1px 4px rgba(0, 120, 215, 0.04);
+        }
+
+        .section-card h2 {
+            margin-top: 0;
+            color: #0078d7;
+            font-size: 1.2rem;
+        }
+
+        .section-card ul {
+            margin: 0.5rem 0 0 1.2rem;
+        }
+
+        .section-card li {
+            margin-bottom: 0.3rem;
+        }
+
+        @media (max-width: 900px) {
+            .main-content {
+                padding: 1.2rem 0.5rem;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .grades-binder {
+                position: static;
+                margin-bottom: 1.5rem;
+            }
+
+            .main-content {
+                margin: 1.5rem 0.2rem;
+                padding: 1rem 0.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav
+        style="position:fixed;top:1.2rem;right:2rem;z-index:2000;background:#fff;border-radius:8px;box-shadow:0 2px 8px rgba(0,120,215,0.08);padding:0.7rem 1.5rem;display:flex;gap:1.2rem;align-items:center;">
+        <a href="index.html" style="color:#0078d7;font-weight:600;text-decoration:none;">Home</a>
+        <a href="research.html" style="color:#0078d7;font-weight:600;text-decoration:none;">Research</a>
+        <a href="achievements-service.html" style="color:#0078d7;font-weight:600;text-decoration:none;">Achievements & Service</a>
+        <a href="more.html" style="color:#0078d7;font-weight:600;text-decoration:none;">More</a>
+        <a href="resume.html" style="color:#0078d7;font-weight:600;text-decoration:none;">Resume</a>
+    </nav>
+    <div class="movie-intro" id="movieIntro">
+        <img src="profile1.jpg" alt="Prakul Balaji photo" class="movie-photo" id="moviePhoto">
+        <div class="movie-textbox" id="movieText">Welcome to my digital portfolio! Click next to begin the tour.</div>
+        <button class="movie-next-btn" onclick="nextScene()" id="movieNextBtn">Next</button>
+    </div>
+    <header>
+        <h1 style="font-size:2.5rem; margin:0; text-align:center; letter-spacing:1.5px;">Prakul Balaji Digital Portfolio
+        </h1>
+    </header>
+    <div class="grades-binder"
+        style="position:fixed;top:1.2rem;left:2rem;z-index:1500;max-width:420px;width:100%;min-width:260px;">
+        <div class="profile-photo" id="profilePhoto">
+            <!-- Place a photo here, or initials -->
+            <span>👤</span>
+        </div>
+        <div class="binder-tabs">
+            <button class="binder-tab" onclick="showGradeDetails('9th', event)">9th</button>
+            <button class="binder-tab" onclick="showGradeDetails('10th', event)">10th</button>
+            <button class="binder-tab" onclick="showGradeDetails('11th', event)">11th</button>
+            <button class="binder-tab" onclick="showGradeDetails('12th', event)">12th</button>
+        </div>
+        <div id="grade-details" class="grade-details">
+            <p>Select a grade tab to see details.</p>
+        </div>
+    </div>
+    <main class="main-content">
+        <div class="section-card">
+            <h2>Home or Landing Page</h2>
+            <ul>
+                <li>Professional headshot, intro paragraph, video, or quote</li>
+                <li>Academic-focused video or key portfolio links</li>
+            </ul>
+        </div>
+        <div class="section-card">
+            <div class="page-title"
+                style="text-align:center; font-size:2rem; color:#0078d7; margin-bottom:1.2rem; letter-spacing:1px; text-shadow:0 2px 8px #eaf3fa;">
+                Academic & Career
+            </div>
+            <div class="section-card"
+                style="background:linear-gradient(90deg,#eaf3fa 0%,#d0e7ff 100%);box-shadow:0 4px 16px rgba(0,120,215,0.10);">
+                <h2 style="color:#005fa3;">Resume</h2>
+                <p>Download Prakul Balaji's resume:</p>
+                <a href="resume.pdf" target="_blank"
+                    style="display:inline-block;padding:0.6rem 1.2rem;background:#0078d7;color:#fff;border-radius:6px;text-decoration:none;font-weight:600;box-shadow:0 2px 8px rgba(0,120,215,0.08);margin-bottom:1rem;">View
+                    PDF Resume</a>
+            </div>
+            <div class="section-card"
+                style="background:linear-gradient(90deg,#eaf3fa 0%,#d0e7ff 100%);box-shadow:0 4px 16px rgba(0,120,215,0.10);">
+                <h2 style="color:#005fa3;">Personal Goals Statement</h2>
+                <p>Prakul Balaji's personal goals statement will be displayed here.</p>
+                <!-- You can replace this text with the actual statement or a file upload link -->
+            </div>
+            <div class="section-card"
+                style="background:linear-gradient(90deg,#eaf3fa 0%,#d0e7ff 100%);box-shadow:0 4px 16px rgba(0,120,215,0.10);">
+                <h2 style="color:#005fa3;">Career Exploration</h2>
+                <ul>
+                    <li>Job descriptions of 2-3 careers of interest</li>
+                    <li>Company profiles</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+    <script>
+        // Movie intro scenes data
+        const scenes = [
+            { img: "profile1.jpg", text: "Welcome to my digital portfolio! Click next to begin the tour." },
+            { img: "profile1.jpg", text: "Here you'll find my academic achievements and projects." },
+            { img: "profile1.jpg", text: "Explore my research, community service, and more!" }
+        ];
+        let sceneIdx = 0;
+        function nextScene() {
+            sceneIdx++;
+            if (sceneIdx >= scenes.length) {
+                document.getElementById('movieIntro').style.display = 'none';
+                return;
+            }
+            document.getElementById('moviePhoto').src = scenes[sceneIdx].img;
+            document.getElementById('movieText').textContent = scenes[sceneIdx].text;
+            if (sceneIdx === scenes.length - 1) {
+                document.getElementById('movieNextBtn').textContent = 'Finish';
+            }
+        }
+        // Example data, Prakul Balaji can edit these manually
+        const gradeData = {
+            '9th': { grades: 'A, B, A, B+', teacher: 'Ms. Smith' },
+            '10th': { grades: 'A-, B+, A, A', teacher: 'Mr. Lee' },
+            '11th': { grades: 'B, A, A-, B+', teacher: 'Mrs. Patel' },
+            '12th': { grades: 'A, A, A, A-', teacher: 'Dr. Brown' }
+        };
+        function showGradeDetails(grade, event) {
+            const d = gradeData[grade] || { grades: '[Enter grades]', teacher: '[Enter teacher]' };
+            document.getElementById('grade-details').innerHTML = `<strong>${grade} Grade</strong><br>Grades: ${d.grades}<br>Teacher: ${d.teacher}`;
+            // Highlight active tab
+            document.querySelectorAll('.binder-tab').forEach(btn => btn.classList.remove('active'));
+            if (event) event.target.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>
