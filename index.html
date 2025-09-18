@@ -1,2 +1,327 @@
-<!-- Copied from friend-portfolio.html, with navigation and links updated to new filenames. -->
-<!-- ...existing code from friend-portfolio.html with updated navigation and links... -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Prakul Balaji - Portfolio</title>
+	<style>
+		body {
+			margin: 0;
+			font-family: 'Segoe UI', Arial, sans-serif;
+			background: #f4f8fb;
+			color: #222;
+		}
+
+		nav {
+			width: 100%;
+			background: #eaf4fc;
+			padding: 1rem 0 0.5rem 0;
+			text-align: center;
+			box-shadow: 0 2px 8px rgba(0, 120, 215, 0.06);
+			margin-bottom: 2rem;
+			position: sticky;
+			top: 0;
+			z-index: 100;
+		}
+
+		nav a {
+			color: #0078d7;
+			font-weight: 600;
+			text-decoration: none;
+			margin: 0 1.5rem;
+			font-size: 1.1rem;
+		}
+
+		nav a:hover {
+			text-decoration: underline;
+		}
+
+		section {
+			max-width: 900px;
+			margin: 3rem auto;
+			background: #fff;
+			border-radius: 14px;
+			box-shadow: 0 2px 12px rgba(0, 120, 215, 0.08);
+			padding: 2.5rem;
+		}
+
+		.section-card {
+			background: #f7fbff;
+			border-left: 4px solid #0078d7;
+			border-radius: 8px;
+			margin-bottom: 1.5rem;
+			padding: 1.2rem 1.5rem;
+			box-shadow: 0 1px 4px rgba(0, 120, 215, 0.04);
+		}
+
+		.section-card h2 {
+			margin-top: 0;
+			color: #0078d7;
+			font-size: 1.2rem;
+		}
+
+		.section-card ul {
+			margin: 0.5rem 0 0 1.2rem;
+		}
+
+		.section-card li {
+			margin-bottom: 0.3rem;
+		}
+
+		.back-link {
+			display: inline-block;
+			margin-bottom: 1.5rem;
+			color: #0078d7;
+			text-decoration: none;
+			font-weight: 600;
+		}
+
+		.back-link:hover {
+			text-decoration: underline;
+		}
+
+		.resume-embed {
+			width: 100%;
+			height: 900px;
+			border: none;
+			border-radius: 8px;
+			box-shadow: 0 1px 4px rgba(0, 120, 215, 0.04);
+		}
+
+		/* Movie intro overlay */
+		.movie-intro {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100vw;
+			height: 100vh;
+			background: rgba(0, 0, 0, 0.7);
+			z-index: 1000;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			flex-direction: column;
+			transition: opacity 0.5s;
+		}
+
+		.movie-photo {
+			width: 180px;
+			height: 180px;
+			border-radius: 50%;
+			object-fit: cover;
+			border: 5px solid #fff;
+			box-shadow: 0 0 0 8px rgba(0, 120, 215, 0.25);
+			background: #eaf3fa;
+			margin-bottom: 2rem;
+			position: relative;
+		}
+
+		.movie-textbox {
+			background: rgba(255, 255, 255, 0.97);
+			color: #222;
+			border-radius: 12px;
+			padding: 1.2rem 2rem;
+			font-size: 1.2rem;
+			box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+			max-width: 90vw;
+			min-width: 260px;
+			text-align: center;
+		}
+
+		.movie-next-btn {
+			margin-top: 2rem;
+			background: #0078d7;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 0.7rem 2.2rem;
+			font-size: 1.1rem;
+			font-weight: 600;
+			cursor: pointer;
+			box-shadow: 0 1px 4px rgba(0, 120, 215, 0.07);
+			transition: background 0.2s;
+		}
+
+		.movie-next-btn:hover {
+			background: #005fa3;
+		}
+
+		@media (max-width: 900px) {
+			section {
+				padding: 1.2rem 0.5rem;
+			}
+		}
+
+		@media (max-width: 700px) {
+			section {
+				margin: 1.5rem 0.2rem;
+				padding: 1rem 0.2rem;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+		<a href="#home">Home</a>
+		<a href="#resume">Resume</a>
+		<a href="#research">Research</a>
+		<a href="#achievements">Achievements & Service</a>
+		<a href="#more">More</a>
+	</nav>
+
+	<!-- Movie Intro Overlay -->
+	<div class="movie-intro" id="movieIntro">
+		<img src="profile1.jpg" alt="Prakul Balaji photo" class="movie-photo" id="moviePhoto">
+		<div class="movie-textbox" id="movieText">Welcome to my digital portfolio! Click next to begin the tour.</div>
+		<button class="movie-next-btn" onclick="nextScene()" id="movieNextBtn">Next</button>
+	</div>
+
+	<!-- Home Section -->
+	<section id="home">
+		<h1 style="text-align:center; color:#0078d7;">Prakul Balaji Digital Portfolio</h1>
+		<div class="section-card">
+			<h2>Welcome</h2>
+			<p>Welcome to my digital portfolio! Here you'll find my academic achievements, research, community service,
+				and more. Explore the sections below to learn more about my journey.</p>
+		</div>
+		<div class="section-card">
+			<h2>Academic & Career</h2>
+			<ul>
+				<li>Professional headshot, intro paragraph, video, or quote</li>
+				<li>Academic-focused video or key portfolio links</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- Resume Section -->
+	<section id="resume">
+		<h1 style="text-align:center; color:#0078d7;">Resume</h1>
+		<div class="section-card">
+			<h2>View Resume</h2>
+			<iframe class="resume-embed" src="Prakul Resume Final.pdf"></iframe>
+		</div>
+	</section>
+
+	<!-- Research Section -->
+	<section id="research" style="display:none;">
+		<h1 style="text-align:center; color:#0078d7;">Research</h1>
+		<div class="section-card">
+			<h2>Research Papers</h2>
+			<ul>
+				<li><a href="https://docs.google.com/document/d/1JTODtLhK3XgShR9n7jdRyyodyxkgbY1O0Zi4d9_7cOA/edit?tab=t.0"
+						target="_blank">Opioid Abuse: Cultural and Societal Impact</a></li>
+				<li><a href="https://docs.google.com/document/d/1OC4VuGI9B0Lo5amX10ypk-yVxKvkhuq3uBe5_6Memng/edit?tab=t.0"
+						target="_blank">Repatriation of International Artifacts to Western Museums</a></li>
+				<li><a href="https://docs.google.com/document/d/1X7zEasRZM_pNePhRAs7uk1FnxW-DR-Zrba-fVAU1D7g/edit?tab=t.0"
+						target="_blank">Basophil Levels and Allergies: A Study Across Races and Genders</a></li>
+				<li><a href="https://docs.google.com/document/d/12y0Cd6aoYByDuOoDaHGmu4b8yVxF782FwNfYtiO-Iyg/edit?tab=t.0"
+						target="_blank">Impact of Genetic Mutations on Mortality Rate in Breast Cancer Patients</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- Achievements & Service Section -->
+	<section id="achievements" style="display:none;">
+		<h1 style="text-align:center; color:#0078d7;">Achievements & Service</h1>
+		<div class="section-card">
+			<h2>Community Involvement or Service</h2>
+			<ul>
+				<li>Evidence of outreach in the community</li>
+				<li>Personal or school-sponsored events</li>
+			</ul>
+		</div>
+		<div class="section-card">
+			<h2>Achievements</h2>
+			<ul>
+				<li>Awards, recognitions, certificates</li>
+				<li>Clubs, honor societies, athletics, chorus, band</li>
+			</ul>
+		</div>
+		<div class="section-card">
+			<h2>Internships</h2>
+			<ul>
+				<li>Activity logs, challenges, strengths</li>
+				<li>Names and addresses of service locations, supervisors</li>
+				<li>Performance appraisals</li>
+			</ul>
+		</div>
+	</section>
+
+	<!-- More Section -->
+	<section id="more" style="display:none;">
+		<h1 style="text-align:center; color:#0078d7;">More About Prakul Balaji</h1>
+		<div class="section-card">
+			<h2>Extracurricular Activities</h2>
+			<ul>
+				<li>Sports, music, arts, clubs, competitions</li>
+				<li>Leadership roles</li>
+				<li>Special projects</li>
+			</ul>
+		</div>
+		<div class="section-card">
+			<h2>Skills & Certifications</h2>
+			<ul>
+				<li>Languages spoken</li>
+				<li>Technical skills</li>
+				<li>Certifications and courses</li>
+			</ul>
+		</div>
+	</section>
+</body>
+
+<script>
+	// Movie intro scenes data
+	const scenes = [
+		{ img: "profile1.jpg", text: "Welcome to my digital portfolio! Click next to begin the tour." },
+		{ img: "profile1.jpg", text: "Here you'll find my academic achievements and projects." },
+		{ img: "profile1.jpg", text: "Explore my research, community service, and more!" }
+	];
+	let sceneIdx = 0;
+	function nextScene() {
+		sceneIdx++;
+		if (sceneIdx >= scenes.length) {
+			document.getElementById('movieIntro').style.display = 'none';
+			return;
+		}
+		document.getElementById('moviePhoto').src = scenes[sceneIdx].img;
+		document.getElementById('movieText').textContent = scenes[sceneIdx].text;
+		if (sceneIdx === scenes.length - 1) {
+			document.getElementById('movieNextBtn').textContent = 'Finish';
+		}
+	}
+
+	// Single-page navigation logic
+	function showSection(sectionId) {
+		document.querySelectorAll('section').forEach(sec => {
+			sec.style.display = 'none';
+		});
+		const section = document.getElementById(sectionId);
+		if (section) section.style.display = '';
+	}
+
+	// Attach click handlers to nav links
+	window.addEventListener('DOMContentLoaded', function () {
+		// Hide all sections except home on load
+		showSection('home');
+		document.querySelectorAll('nav a').forEach(link => {
+			link.addEventListener('click', function (e) {
+				const hash = this.getAttribute('href');
+				if (hash && hash.startsWith('#')) {
+					e.preventDefault();
+					const sectionId = hash.substring(1);
+					showSection(sectionId);
+					history.replaceState(null, '', hash);
+				}
+			});
+		});
+		// Show section if hash present on load
+		if (window.location.hash) {
+			const sectionId = window.location.hash.substring(1);
+			showSection(sectionId);
+		}
+	});
+</script>
+
+</html>
